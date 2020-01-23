@@ -1,6 +1,8 @@
 namespace bluetooth {
     //% block
     //% group.min=1 group.max=7 group.defl=1
+    //% parts="bluetooth"
+    //% shim=bluetooth::activateSwgeBeacon
     export function activateSwgeBeacon(group: number = 1): void
     { }
 }
