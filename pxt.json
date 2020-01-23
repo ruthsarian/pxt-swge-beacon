@@ -8,7 +8,7 @@
     },
     "files": [
         "README.md",
-        "custom.ts",
+        "bluetooth.ts",
         "SwgeBeaconService.cpp",
         "SwgeBeaconService.h",
         "SwgeBeacon.cpp",
@@ -18,6 +18,5 @@
     "testFiles": [
         "test.ts"
     ],
-    "public": true,
-    "preferredEditor": "tsprj"
+    "public": true
 }
