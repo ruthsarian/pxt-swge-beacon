@@ -1,8 +1,12 @@
 namespace bluetooth {
+    /**
+     * Activate SWGE Beacon
+     * @param zone [1-7] set the location id for the beacon
+     */
     //% block
-    //% group.min=1 group.max=7 group.defl=1
     //% parts="bluetooth"
     //% shim=bluetooth::activateSwgeBeacon
-    export function activateSwgeBeacon(group: number = 1): void
+    //% zone.min=1 zone.max=7 zone.defl=1
+    export function activateSwgeBeacon(zone: number): void
     { }
 }
