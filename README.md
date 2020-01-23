@@ -2,9 +2,13 @@
 
 This PXT package allows the micro:bit to act as a SWGE beacon.
 
-## block: activate swge beacon `zone`
+## block: activate swge location beacon `zone`
 
 * The `zone` argument can be a value from 1 to 7. It identifies an area within the park and the associate audio group the droid should utilize when reacting to the beacon.
+
+## block: activate swge beacon `zone`
+
+* An alias to the location beacon block for backwards compatibility
 
 ## TODO
 - [ ] Add "icon.png" image (300x200) in the root folder
