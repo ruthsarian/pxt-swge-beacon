@@ -27,4 +27,11 @@ void activateSwgeLocationBeacon(uint8_t zone)
 {
     getBeaconService()->activateSwgeLocationBeacon(zone);
 }
+
+//%
+void activateGenericBeacon(uint16_t manufacturerId, StringData *beaconData)
+{
+    ManagedString beaconDataStr(beaconData);
+    getBeaconService()->activateGenericBeacon(manufacturerId, beaconDataStr);
+}
 }
