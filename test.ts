@@ -1,7 +1,7 @@
 basic.showString("X")
 
 input.onButtonPressed(Button.A, () => {
-    bluetooth.activateSwgeBeacon(1)
+    bluetooth.activateSwgeLocationBeacon(1)
     basic.showString("O")
 })
 

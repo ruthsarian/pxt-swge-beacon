@@ -10,7 +10,7 @@
 
 namespace
 {
-const uint8_t SWGE_BEACON_PAYLOAD[] = {
+const uint8_t SWGE_LOCATION_BEACON_PAYLOAD[] = {
 	0x83, 0x01,		// manufacturer's id: 0x0183
 	0x0A,			// type of beacon (location beacon)
 	0x04, 			// length of beacon data
@@ -33,10 +33,10 @@ SwgeBeaconService::SwgeBeaconService(BLEDevice *dev) : ble(*dev)
 {
 }
 
-void SwgeBeaconService::activateSwgeBeacon(uint8_t zone)
+void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone)
 {
     uint8_t msd[8];
-    memcpy(msd, SWGE_BEACON_PAYLOAD, 8);
+    memcpy(msd, SWGE_LOCATION_BEACON_PAYLOAD, 8);
 
     // only zones used in the park, and which the droid will react to, are values 1 - 7.
     if (zone > 0 && zone < 8) {

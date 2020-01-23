@@ -19,6 +19,12 @@ SwgeBeaconService *getBeaconService()
 //%
 void activateSwgeBeacon(uint8_t zone)
 {
-    getBeaconService()->activateSwgeBeacon(zone);
+    getBeaconService()->activateSwgeLocationBeacon(zone);
+}
+
+//%
+void activateSwgeLocationBeacon(uint8_t zone)
+{
+    getBeaconService()->activateSwgeLocationBeacon(zone);
 }
 }

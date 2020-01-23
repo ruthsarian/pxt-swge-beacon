@@ -16,11 +16,11 @@ class SwgeBeaconService
     SwgeBeaconService(BLEDevice *device);
 
     /**
-     * Advertise as SWGE Beacon
+     * Advertise as SWGE Location Beacon
      * 
      * @param zone Group ID
      */
-    void activateSwgeBeacon(uint8_t zone);
+    void activateSwgeLocationBeacon(uint8_t zone);
 
   private:
     BLEDevice &ble;
