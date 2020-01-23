@@ -50,7 +50,7 @@ void SwgeBeaconService::activateSwgeBeacon(uint8_t zone)
     advertiseBeacon(msd,8,cln,4);
 }
 
-void SwgeBeaconService::advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t cln, uint8_t cln_len)
+void SwgeBeaconService::advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t *cln, uint8_t cln_len)
 {
     ble.gap().stopAdvertising();
     ble.gap().clearAdvertisingPayload();
