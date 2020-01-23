@@ -17,11 +17,11 @@ const uint8_t SWGE_BEACON_PAYLOAD[] = {
 	0x01,			// location; also corresponds to the audio group the droid will select a sound from
 	0x02,			// ? minimum interval between droid reactions to the beacon
 	0xA6,			// expected RSSI, beacon is ignored if weaker
-	0x01			// ? 0 or 1 otherwise droid will ignore the beacon
+	0x01,			// ? 0 or 1 otherwise droid will ignore the beacon
 };
 
 const uint8_t SWGE_BEACON_NAME[] = {
-	0x75, 0x42, 0x69, 0x74		// 'uBit'
+	0x75, 0x42, 0x69, 0x74,		// 'uBit'
 };
 }
 
@@ -37,12 +37,13 @@ void SwgeBeaconService::activateSwgeBeacon(uint8_t zone)
 {
     uint8_t msd[8];
     memcpy(msd, SWGE_BEACON_PAYLOAD, 8);
+
     if (zone > 0 && zone < 8) {
-        msd[4]=zone;
+        msd[4] = zone;
     }
 	
-	uint8_t cln[4];
-	memcpy(msd, SWGE_BEACON_NAME, 4);
+//    uint8_t cln[4];
+//    memcpy(msd, SWGE_BEACON_NAME, 4);
 
     ble.gap().stopAdvertising();
     ble.gap().clearAdvertisingPayload();
