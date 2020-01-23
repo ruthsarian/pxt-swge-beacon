@@ -20,6 +20,16 @@ const uint8_t SWGE_LOCATION_BEACON_PAYLOAD[] = {
 	0x01,			// ? 0 or 1 otherwise droid will ignore the beacon
 };
 
+const uint8_t SWGE_DROID_BEACON_PAYLOAD[] = {
+	0x83, 0x01,		// manufacturer's id: 0x0183
+    0x03,           // type of beacon (droid beacon)
+    0x04,           // length of beacon data
+    0x44,           // ??
+    0x81,           // 0x01 + ( 0x80 if droid is paired with a remote)
+    0x82,           // a combination of personality chip and affiliation IDs
+    0x01,           // personality chip ID
+};
+
 const uint8_t SWGE_BEACON_NAME[] = {
 	0x75, 0x42, 0x69, 0x74,		// 'uBit'
 };
@@ -55,8 +65,18 @@ void SwgeBeaconService::advertiseBeacon(const uint8_t *msd, uint8_t msd_len, con
     ble.gap().stopAdvertising();
     ble.gap().clearAdvertisingPayload();
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::BREDR_NOT_SUPPORTED | GapAdvertisingData::LE_GENERAL_DISCOVERABLE);
-    ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LOCAL_NAME , cln, cln_len);
+
+    // only include the name if there's room for it
+    if (msd_len + cln_len < 27 && cln_len > 0) {
+        ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LOCAL_NAME , cln, cln_len);
+    } 
+
+    // limit manufacturer's data to just 26 bytes total
+    else if (msd_len > 26) {
+        msd_len = 26;
+    }
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::MANUFACTURER_SPECIFIC_DATA, msd, msd_len);
+
     ble.gap().setAdvertisingType(GapAdvertisingParams::ADV_NON_CONNECTABLE_UNDIRECTED);
     ble.gap().setAdvertisingInterval(1000);
     ble.gap().startAdvertising();
