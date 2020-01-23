@@ -2,10 +2,10 @@ basic.showString("X")
 
 input.onButtonPressed(Button.A, () => {
     bluetooth.activateSwgeLocationBeacon(1)
-    basic.showString("O")
+    basic.showString("A")
 })
 
 input.onButtonPressed(Button.B, () => {
-    bluetooth.stopAdvertising();
-    basic.showString("X")
+    bluetooth.activateGenericBeacon(0x0183, "HELLO");
+    basic.showString("B")
 })

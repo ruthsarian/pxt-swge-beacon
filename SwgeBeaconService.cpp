@@ -57,14 +57,39 @@ void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone)
     uint8_t cln[4];
     memcpy(cln, SWGE_BEACON_NAME, 4);
 
+    // start beacon
     advertiseBeacon(msd,8,cln,4);
 }
 
-void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedBuffer beaconData)
+void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedString beaconData)
 {
-    return;
-}
+    uint8_t pos = 0;
+    uint8_t data_len = beaconData.length();
+    uint8_t payload[26];
 
+    // limit beacon data to 24 bytes (+2 bytes for manufacturer's id)
+    // see: https://stackoverflow.com/questions/33535404/whats-the-maximum-length-of-a-ble-manufacturer-specific-data-ad/33770673
+    if (data_len > 24) {
+        data_len = 24;
+    }
+
+    // where in the payload buffer does the data begin
+    pos = 24 - data_len;
+
+    // insert manufacturer id into payload
+    payload[pos] = manufacturerId & 0xff;
+    payload[pos+1] = (manufacturerId >> 8) & 0xff;
+
+    // insert beaconData into payload
+    memcpy(&payload[pos+2], beaconData.toCharArray(), 24-pos);
+
+    // add name 'uBit' to beacon
+    uint8_t cln[4];
+    memcpy(cln, SWGE_BEACON_NAME, 4);
+
+    // start beacon
+    advertiseBeacon(&payload[pos], data_len+2, cln, 4);
+}
 
 void SwgeBeaconService::advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t *cln, uint8_t cln_len)
 {

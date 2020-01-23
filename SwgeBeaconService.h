@@ -28,7 +28,7 @@ class SwgeBeaconService
      * @param manufacturerId 2-byte manufacturer's id value
      * @param beaconData the data for the beacon
      */
-    void activateGenericBeacon(uint16_t manufacturerId, ManagedBuffer beaconData);
+    void activateGenericBeacon(uint16_t manufacturerId, ManagedString beaconData);
 
   private:
     BLEDevice &ble;
