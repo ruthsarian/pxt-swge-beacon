@@ -21,7 +21,7 @@ const uint8_t SWGE_LOCATION_BEACON_PAYLOAD[] = {
 };
 
 const uint8_t SWGE_DROID_BEACON_PAYLOAD[] = {
-	0x83, 0x01,		// manufacturer's id: 0x0183
+    0x83, 0x01,	    // manufacturer's id: 0x0183
     0x03,           // type of beacon (droid beacon)
     0x04,           // length of beacon data
     0x44,           // ??
@@ -45,27 +45,7 @@ SwgeBeaconService::SwgeBeaconService(BLEDevice *dev) : ble(*dev)
 
 void SwgeBeaconService::activateBeacon(uint16_t manufacturerId, ManagedBuffer beaconData)
 {
-    uint8_t pos = 0;
-    uint8_t data_len = beaconData.length();
-    uint8_t payload[26];
-
-    // limit beacon data to 24 bytes (+2 bytes for manufacturer's id)
-    // see: https://stackoverflow.com/questions/33535404/whats-the-maximum-length-of-a-ble-manufacturer-specific-data-ad/33770673
-    if (data_len > 24) {
-        data_len = 24;
-    }
-
-    // where in the payload buffer does the data begin
-    pos = 24 - data_len;
-
-    // insert manufacturer id into payload
-    payload[pos] = manufacturerId & 0xff;
-    payload[pos+1] = (manufacturerId >> 8) & 0xff;
-
-    // insert beaconData into payload
-    memcpy(&payload[pos+2], beaconData.getBytes(), 24-pos);
-
-    advertiseBeacon(&payload[pos], data_len+2, nullptr, 0);
+	return; // TODO
 }
 
 void SwgeBeaconService::activateSwgeBeacon(uint8_t zone)
@@ -77,7 +57,7 @@ void SwgeBeaconService::activateSwgeBeacon(uint8_t zone)
     if (zone > 0 && zone < 8) {
         msd[4] = zone;
     }
-	
+
     uint8_t cln[4];
     memcpy(cln, SWGE_BEACON_NAME, 4);
 
@@ -90,13 +70,13 @@ void SwgeBeaconService::advertiseBeacon(const uint8_t *msd, uint8_t msd_len, con
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::BREDR_NOT_SUPPORTED | GapAdvertisingData::LE_GENERAL_DISCOVERABLE);
 
     // only include the name if there's room for it
-    if (msd_len + cln_len < 27 && cln_len > 0) {
+//    if (msd_len + cln_len < 27 && cln_len > 0) {
         ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LOCAL_NAME , cln, cln_len);
-    } 
+//    } 
     // limit manufacturer's data to just 26 bytes total
-    else if (msd_len > 26) {
-        msd_len = 26;
-    }
+//    else if (msd_len > 26) {
+//        msd_len = 26;
+//    }
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::MANUFACTURER_SPECIFIC_DATA, msd, msd_len);
 
     ble.gap().setAdvertisingType(GapAdvertisingParams::ADV_NON_CONNECTABLE_UNDIRECTED);
