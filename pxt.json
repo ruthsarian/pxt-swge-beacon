@@ -1,24 +1,22 @@
 {
     "name": "pxt-swge-beacon",
-    "version": "0.0.0",
-    "description": "",
+    "version": "0.0.1",
+    "description": "Advertise SWGE Location Beacon",
     "dependencies": {
         "core": "*",
         "bluetooth": "*"
     },
     "files": [
         "README.md",
-        "main.ts",
         "custom.ts",
-        "SwgeBeacon.cpp",
         "SwgeBeaconService.cpp",
         "SwgeBeaconService.h",
-        "enums.d.ts",
-        "shims.d.ts"
+        "SwgeBeacon.cpp",
+        "shims.d.ts",
+        "enums.d.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
-    "public": false,
-    "preferredEditor": "tsprj"
+    "public": true
 }
