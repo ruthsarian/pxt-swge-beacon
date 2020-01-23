@@ -7,6 +7,7 @@ namespace bluetooth {
     //% parts="bluetooth"
     //% shim=bluetooth::activateSwgeBeacon
     //% zone.min=1 zone.max=7 zone.defl=1
-    export function activateSwgeBeacon(zone: number): void
-    { }
+    export function activateSwgeBeacon(zone: number) {
+        return;
+    }
 }
