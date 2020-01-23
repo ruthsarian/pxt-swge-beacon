@@ -42,15 +42,15 @@ void SwgeBeaconService::activateSwgeBeacon(uint8_t zone)
         msd[4] = zone;
     }
 	
-//    uint8_t cln[4];
-//    memcpy(msd, SWGE_BEACON_NAME, 4);
+    uint8_t cln[4];
+    memcpy(msd, SWGE_BEACON_NAME, 4);
 
     ble.gap().stopAdvertising();
     ble.gap().clearAdvertisingPayload();
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::BREDR_NOT_SUPPORTED | GapAdvertisingData::LE_GENERAL_DISCOVERABLE);
 	
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::MANUFACTURER_SPECIFIC_DATA, msd, 8);
-//    ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LOCAL_NAME , cln, 4);
+    ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LOCAL_NAME , cln, 4);
 
     ble.gap().setAdvertisingType(GapAdvertisingParams::ADV_NON_CONNECTABLE_UNDIRECTED);
     ble.gap().setAdvertisingInterval(1000);
