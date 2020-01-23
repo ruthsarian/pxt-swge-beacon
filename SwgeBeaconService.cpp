@@ -43,12 +43,6 @@ SwgeBeaconService::SwgeBeaconService(BLEDevice *dev) : ble(*dev)
 {
 }
 
-void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedBuffer beaconData)
-{
-    // TODO
-    return;
-}
-
 void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone)
 {
     uint8_t msd[8];
