@@ -1,1 +1,11 @@
-// tests go here; this will not be compiled when this package is used as a library
+basic.showString("X")
+
+input.onButtonPressed(Button.A, () => {
+    bluetooth.activateSwgeBeacon(1)
+	basic.showString("O")
+})
+
+input.onButtonPressed(Button.B, () => {
+	bluetooth.stopAdvertising();
+	basic.showString("X")
+})
