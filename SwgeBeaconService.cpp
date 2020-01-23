@@ -42,17 +42,21 @@ void SwgeBeaconService::activateSwgeBeacon(uint8_t zone)
     if (zone > 0 && zone < 8) {
         msd[4] = zone;
     }
-	
+
+    // add name 'uBit' to beacon
     uint8_t cln[4];
     memcpy(cln, SWGE_BEACON_NAME, 4);
 
+    advertiseBeacon(msd,8,cln,4);
+}
+
+void SwgeBeaconService::advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t cln, uint8_t cln_len)
+{
     ble.gap().stopAdvertising();
     ble.gap().clearAdvertisingPayload();
     ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::BREDR_NOT_SUPPORTED | GapAdvertisingData::LE_GENERAL_DISCOVERABLE);
-	
-    ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LOCAL_NAME , cln, 4);
-    ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::MANUFACTURER_SPECIFIC_DATA, msd, 8);
-
+    ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::COMPLETE_LOCAL_NAME , cln, cln_len);
+    ble.gap().accumulateAdvertisingPayload(GapAdvertisingData::MANUFACTURER_SPECIFIC_DATA, msd, msd_len);
     ble.gap().setAdvertisingType(GapAdvertisingParams::ADV_NON_CONNECTABLE_UNDIRECTED);
     ble.gap().setAdvertisingInterval(1000);
     ble.gap().startAdvertising();
