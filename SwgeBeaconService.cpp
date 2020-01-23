@@ -63,7 +63,6 @@ void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone)
 
 void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedString beaconData)
 {
-    uint8_t pos = 0;
     uint8_t data_len = beaconData.length();
     uint8_t payload[26];
 
@@ -73,22 +72,19 @@ void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedSt
         data_len = 24;
     }
 
-    // where in the payload buffer does the data begin
-    pos = 24 - data_len;
-
     // insert manufacturer id into payload
-    payload[pos] = manufacturerId & 0xff;
-    payload[pos+1] = (manufacturerId >> 8) & 0xff;
+    payload[0] = manufacturerId & 0xff;
+    payload[1] = (manufacturerId >> 8) & 0xff;
 
     // insert beaconData into payload
-    memcpy(&payload[pos+2], beaconData.toCharArray(), 24-pos);
+    memcpy(&payload[2], beaconData.toCharArray(), data_len);
 
     // add name 'uBit' to beacon
     uint8_t cln[4];
     memcpy(cln, SWGE_BEACON_NAME, 4);
 
     // start beacon
-    advertiseBeacon(&payload[pos], data_len+2, cln, 4);
+    advertiseBeacon(payload, data_len+2, cln, 4);
 }
 
 void SwgeBeaconService::advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t *cln, uint8_t cln_len)
