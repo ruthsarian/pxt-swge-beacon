@@ -38,9 +38,9 @@ void SwgeBeaconService::activateSwgeBeacon(uint8_t zone)
     uint8_t msd[8];
     memcpy(msd, SWGE_BEACON_PAYLOAD, 8);
 
-    if (zone > 0 && zone < 8) {
+//    if (zone > 0 && zone < 8) {
         msd[4] = zone;
-    }
+//    }
 	
     uint8_t cln[4];
     memcpy(cln, SWGE_BEACON_NAME, 4);
