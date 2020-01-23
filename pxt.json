@@ -9,7 +9,12 @@
     "files": [
         "README.md",
         "main.ts",
-        "custom.ts"
+        "custom.ts",
+        "SwgeBeacon.cpp",
+        "SwgeBeaconService.cpp",
+        "SwgeBeaconService.h",
+        "enums.d.ts",
+        "shims.d.ts"
     ],
     "testFiles": [
         "test.ts"
