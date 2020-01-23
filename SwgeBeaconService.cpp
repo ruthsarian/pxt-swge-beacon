@@ -43,6 +43,31 @@ SwgeBeaconService::SwgeBeaconService(BLEDevice *dev) : ble(*dev)
 {
 }
 
+void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedBuffer beaconData)
+{
+    uint8_t pos = 0;
+    uint8_t data_len = beaconData.length();
+    uint8_t payload[26];
+
+    // limit beacon data to 24 bytes (+2 bytes for manufacturer's id)
+    // see: https://stackoverflow.com/questions/33535404/whats-the-maximum-length-of-a-ble-manufacturer-specific-data-ad/33770673
+    if (data_len > 24) {
+        data_len = 24;
+    }
+
+    // where in the payload buffer does the data begin
+    pos = 24 - data_len;
+
+    // insert manufacturer id into payload
+    payload[pos] = manufacturerId & 0xff;
+    payload[pos+1] = (manufacturerId >> 8) & 0xff;
+
+    // insert beaconData into payload
+    memcpy(&payload[pos+2], beaconData.getBytes(), 24-pos);
+
+    advertiseBeacon(&payload[pos], data_len+2, nullptr, 0);
+}
+
 void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone)
 {
     uint8_t msd[8];
