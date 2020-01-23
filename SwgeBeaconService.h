@@ -22,16 +22,8 @@ class SwgeBeaconService
      */
     void activateSwgeBeacon(uint8_t zone);
 
-    /**
-     * Advertise as Generic Manufacturer's Data Beacon
-     * 
-     * @param manufacturerId 2-byte manufacturer's id value
-     * @param beaconData the data for the beacon
-     */
-    void activateBeacon(uint16_t manufacturerId, ManagedBuffer beaconData);
   private:
     BLEDevice &ble;
-    void advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t *cln, uint8_t cln_len);
 };
 
 #endif /* __BLEBEACON_H__ */
