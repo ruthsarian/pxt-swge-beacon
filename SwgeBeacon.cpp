@@ -21,4 +21,11 @@ void activateSwgeBeacon(uint8_t zone)
 {
     getBeaconService()->activateSwgeBeacon(zone);
 }
+
+//%
+void activateBeacon(uint16_t manufacturerId, BufferData *beaconData)
+{
+    ManagedBuffer beaconIdBuffer(beaconId);
+    getBeaconService()->activateBeacon(manufacturerId, beaconIdBuffer);
+}
 }
