@@ -24,7 +24,8 @@ class SwgeBeaconService
 
   private:
     BLEDevice &ble;
-    void advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t cln, uint8_t cln_len);
+
+    void advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t *cln, uint8_t cln_len);
 };
 
 #endif /* __BLEBEACON_H__ */
