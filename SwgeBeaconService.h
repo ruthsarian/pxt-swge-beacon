@@ -18,9 +18,7 @@ class SwgeBeaconService
     /**
      * Advertise as AltBeacon
      * 
-     * @param manufacturerId mfg ID
-     * @param beaconId 20 bytes
-     * @param refRSSI reference RSSI from 0 to -127
+     * @param zone Group ID
      */
     void activateSwgeBeacon(uint8_t zone);
 
