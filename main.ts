@@ -1,3 +1,4 @@
+/*
 basic.showLeds(`
     . . . . .
     . # . # .
@@ -5,3 +6,4 @@ basic.showLeds(`
     # . . . #
     . # # # .
     `);
+*/

@@ -4,15 +4,16 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "radio": "*"
+        "bluetooth": "*"
     },
     "files": [
         "README.md",
-        "main.ts"
+        "main.ts",
+        "custom.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
     "public": false,
-    "additionalFilePaths": []
+    "preferredEditor": "tsprj"
 }
