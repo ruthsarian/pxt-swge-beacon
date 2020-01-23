@@ -16,7 +16,7 @@ class SwgeBeaconService
     SwgeBeaconService(BLEDevice *device);
 
     /**
-     * Advertise as AltBeacon
+     * Activate SWGE Beacon
      * 
      * @param zone Group ID
      */
