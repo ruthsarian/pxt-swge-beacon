@@ -6,7 +6,7 @@ This PXT package allows the micro:bit to act as a SWGE beacon. The generic beaco
 own manufacturer's ID and beacon data. The other beacons are there to make it easier to create certain types
 of beacons commonly found.
 
-Example: https://makecode.microbit.org/_Pf5TyVX5AYWX
+Example: https://makecode.microbit.org/_Km4T7WFyMaRe
 
 ## Blocks
 
