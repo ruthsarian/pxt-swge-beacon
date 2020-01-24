@@ -78,7 +78,24 @@ void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedSt
     payload[1] = (manufacturerId >> 8) & 0xff;
 
     // insert beaconData into payload
-    memcpy(&payload[2], beaconData.toCharArray(), data_len);
+    if ( beaconData.substring(0,2) == "0x" && data_len % 2 == 0 ) {
+
+        uint8_t i = 0;
+        uint8_t d = 0;
+        uint8_t new_data_len = 0;
+
+        for (i=2;i<data_len;i+=2) {
+            d  = (char2int(beaconData.charAt(i  )) << 4 & 0xf0);
+            d += (char2int(beaconData.charAt(i+1))      & 0x0f);
+            payload[new_data_len+2] = d;
+            new_data_len++;
+        }
+        data_len = new_data_len;
+
+
+    } else {
+        memcpy(&payload[2], beaconData.toCharArray(), data_len);
+    }
 
     // add 'uBit' name to beacon
     uint8_t cln[4];
@@ -86,6 +103,18 @@ void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedSt
 
     // advertise the beacon
     advertiseBeacon(payload,data_len+2,cln,4);
+}
+
+uint8_t SwgeBeaconService::char2int(char c) {
+    if ((c >= '0') && (c <= '9')) {
+        return c - '0';
+    } else if ((c >= 'a') && (c <= 'f')) {
+        return c - 'a' + 10;
+    } else if ((c >= 'A') && (c <= 'F')) {
+        return c - 'A' + 10;
+    } else {
+        return 0;
+    }
 }
 
 void SwgeBeaconService::advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t *cln, uint8_t cln_len)

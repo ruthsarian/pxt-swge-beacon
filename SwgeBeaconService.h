@@ -32,7 +32,7 @@ class SwgeBeaconService
 
   private:
     BLEDevice &ble;
-
+    uint8_t char2int(char c);
     void advertiseBeacon(const uint8_t *msd, uint8_t msd_len, const uint8_t *cln, uint8_t cln_len);
 };
 
