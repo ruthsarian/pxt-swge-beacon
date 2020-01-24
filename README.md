@@ -1,6 +1,9 @@
 # pxt-swge-beacon
 
-![alt text](https://raw.githubusercontent.com/ruthsarian/pxt-swge-beacon/master/icon.png "pxt-swge-beacon logo")
+<p align="center" style="text-align:center;"><img 
+  src="https://raw.githubusercontent.com/ruthsarian/pxt-swge-beacon/master/icon.png"
+  width="300" height="200" alt="pxt-swge-beacon logo"
+/></p>
 
 This PXT package allows the micro:bit to act as a SWGE beacon. The generic beacon allows users to specify their
 own manufacturer's ID and beacon data. The other beacons are there to make it easier to create certain types
