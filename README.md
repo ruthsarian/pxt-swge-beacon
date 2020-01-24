@@ -17,7 +17,6 @@ of beacons commonly found.
 * *not yet implemented*
 
 ## TODO
-- [ ] Add "icon.png" image (300x200) in the root folder
 - [ ] Get your package reviewed and approved https://makecode.microbit.org/extensions/approval
 
 ## Supported targets
