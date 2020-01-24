@@ -17,6 +17,7 @@ of beacons commonly found.
 * *not yet implemented*
 
 ## TODO
+- [ ] Implement droid beacon with selectable personality chip and droid type (R or BB unit)
 - [ ] Get your package reviewed and approved https://makecode.microbit.org/extensions/approval
 
 ## Supported targets
