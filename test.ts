@@ -6,6 +6,6 @@ input.onButtonPressed(Button.A, () => {
 })
 
 input.onButtonPressed(Button.B, () => {
-    bluetooth.activateGenericBeacon(0x0183, "HELLO");
+    bluetooth.activateGenericBeacon("387", "HELLO");
     basic.showString("B")
 })

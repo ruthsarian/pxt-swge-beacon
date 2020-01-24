@@ -32,7 +32,7 @@ namespace bluetooth {
     //% block
     //% parts="bluetooth"
     //% shim=bluetooth::activateGenericBeacon
-    export function activateGenericBeacon(manufacturerId: number, beaconData: string) {
+    export function activateGenericBeacon(manufacturerId: string, beaconData: string) {
         return;
     }
 }

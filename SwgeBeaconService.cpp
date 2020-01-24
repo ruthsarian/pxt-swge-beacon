@@ -61,39 +61,52 @@ void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone)
     advertiseBeacon(msd,8,cln,4);
 }
 
-void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedString beaconData)
+void SwgeBeaconService::activateGenericBeacon(ManagedString manufacturerId, ManagedString beaconData)
 {
     // initialize payload
     uint8_t payload[26];
     memset(payload, 0, 26);
 
-    // beacon data cannot be more than 24 bytes
-    uint8_t data_len = beaconData.length();
-    if (data_len > 24) {
-        data_len = 24;
-    }
+    // sort out manufacturer's ID
+    uint16_t mfId = (uint16_t)strtol(manufacturerId.toCharArray(), NULL, 0);
 
     // insert manufacturer id into payload
-    payload[0] = manufacturerId & 0xff;
-    payload[1] = (manufacturerId >> 8) & 0xff;
+    payload[0] = mfId & 0xff;
+    payload[1] = (mfId >> 8) & 0xff;
 
-    // insert beaconData into payload
-    if ( beaconData.substring(0,2) == "0x" && data_len % 2 == 0 ) {
+    // start sorting out data
+    uint8_t data_len = beaconData.length();
 
-        uint8_t i = 0;
+    // is data in hexadecimal format? 
+    if ( beaconData.substring(0,2) == "0x") {
+        uint8_t i = 2;
         uint8_t d = 0;
         uint8_t new_data_len = 0;
 
-        for (i=2;i<data_len;i+=2) {
+        // handle odd number of characters by assuming missing leading zero
+        if ( data_len % 2 != 0 ){
+            payload[new_data_len+2] = char2int(beaconData.charAt(i)) & 0x0f;
+            new_data_len++;
+            i++;
+        }
+
+        // loop through data, converting hex to byte
+        for (;i<data_len;i+=2) {
             d  = (char2int(beaconData.charAt(i  )) << 4 & 0xf0);
             d += (char2int(beaconData.charAt(i+1))      & 0x0f);
             payload[new_data_len+2] = d;
             new_data_len++;
         }
+
         data_len = new_data_len;
 
-
+    // if not in hex, treat string as byte array
     } else {
+        if (data_len > 24) {
+            data_len = 24;
+        }
+
+        // load data into payload
         memcpy(&payload[2], beaconData.toCharArray(), data_len);
     }
 
