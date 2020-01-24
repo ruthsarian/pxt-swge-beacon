@@ -34,6 +34,8 @@ namespace bluetooth {
     //% manufacturerId.shadowOptions.toString=true
     //% beaconData.shadowOptions.toString=true
     //% inlineInputMode=external
+    //% manufacturerId.defl="0x0183"
+    //% beaconData.defl="0x0A040102A601"
     export function activateGenericBeacon(manufacturerId: string, beaconData: string): void {
         return;
     }
