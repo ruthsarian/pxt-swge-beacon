@@ -2,13 +2,15 @@
 
 ![alt text](https://raw.githubusercontent.com/ruthsarian/pxt-swge-beacon/master/icon.png "pxt-swge-beacon logo")
 
-This PXT package allows the micro:bit to act as a SWGE beacon. The generic beacon allows users to specify their
-own manufacturer's ID and beacon data. The other beacons are there to make it easier to create certain types
-of beacons commonly found.
+This PXT package allows the [micro:bit](https://en.wikipedia.org/wiki/Micro_Bit) to generate Bluetooth beacons to which droids from the droid depot will respond. 
+
+## Usage
+
+In [MakeCode](https://makecode.microbit.org/), open an existing project or create a new project. Click on the gear icon at the top-right and select *extensions* from the drop-down menu. In the search box enter `github:ruthsarian/pxt-swge-beacon`, press enter, and select `swge-beacon` when it comes up. Your project will now include SWGE beacon blocks under the `Bluetooth` section with some more advanced versions of those blocks under the `more` subsection.
 
 Example: https://makecode.microbit.org/_Km4T7WFyMaRe
 
-## Blocks
+## Block Descriptions
 
 ### SWGE Location Beacon `zone`
 * `zone`: Select from a drop-down list the location the beacon should represent.
