@@ -27,7 +27,7 @@ namespace bluetooth {
     /**
      * Advertise Generic Beacon
      * @param manufacturerId [0-65535] the manufacturer's id
-     * @param beaconData the beacon data
+     * @param beaconData string ; the beacon data
      */
     //% block
     //% parts="bluetooth"
