@@ -8,7 +8,7 @@
     },
     "files": [
         "README.md",
-        "bluetooth.ts",
+        "custom.ts",
         "SwgeBeaconService.cpp",
         "SwgeBeaconService.h",
         "SwgeBeacon.cpp",
