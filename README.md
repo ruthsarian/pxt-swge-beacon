@@ -6,23 +6,24 @@ This PXT package allows the micro:bit to act as a SWGE beacon. The generic beaco
 own manufacturer's ID and beacon data. The other beacons are there to make it easier to create certain types
 of beacons commonly found.
 
-Example: https://makecode.microbit.org/_fpcDHyY2RaKY
+Example: https://makecode.microbit.org/_Pf5TyVX5AYWX
 
 ## Blocks
 
-### SWGE Generic Beacon  `manufacturerId` `beaconData`
+### SWGE Location Beacon `zone`
+* `zone`: Select from a drop-down list the location the beacon should represent.
+* **note**: there is a version of this block that accepts an arbitrary 
+value for `zone` under "bluetooth : more"
+
+### SWGE Droid Beacon `personality`
+* `personality`: Select from a drop-down list the personality the beacon should represent.
+* **note**: there is a version of this block that accepts an arbitrary 
+value for `personality` under "bluetooth : more"
+
+### SWGE Generic Beacon  `manufacturerId, beaconData`
 * `manufacturerId`: a value that identifies the manufacturer for the beacon. set this to `0x0183`
 * `beaconData`: the data for the beacon. will be treated as hexadecimal if it begins with `0x` otherwise is treated as an array of bytes.
-
-### SWGE Location Beacon `zone`
-* `zone`: a value between 1 and 7. It identifies an area within the park and a corresponding audio group the droid should utilize when reacting to the beacon.
-
-### SWGE Droid Beacon
-* *not yet implemented*
-
-## TODO
-- [ ] Implement droid beacon with selectable personality chip and droid type (R or BB unit)
-- [ ] Get your package reviewed and approved https://makecode.microbit.org/extensions/approval
+* **note**: this block may be found under "bluetooth : more"
 
 ## Supported targets
 * for PXT/microbit

@@ -43,15 +43,15 @@ SwgeBeaconService::SwgeBeaconService(BLEDevice *dev) : ble(*dev)
 {
 }
 
-void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone)
+void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone, uint8_t react_interval, uint8_t rssi)
 {
     uint8_t msd[8];
     memcpy(msd, SWGE_LOCATION_BEACON_PAYLOAD, 8);
 
-    // only zones used in the park, and which the droid will react to, are values 1 - 7.
-    if (zone > 0 && zone < 8) {
-        msd[4] = zone;
-    }
+    // update payload with parameters
+    msd[4] = zone & 0xff;
+    msd[5] = react_interval & 0xff;
+    msd[6] = rssi & 0xff;
 
     // add name 'uBit' to beacon
     uint8_t cln[4];
@@ -61,40 +61,59 @@ void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone)
     advertiseBeacon(msd,8,cln,4);
 }
 
-void SwgeBeaconService::activateGenericBeacon(ManagedString manufacturerId, ManagedString beaconData)
+void SwgeBeaconService::activateSwgeDroidBeacon(uint8_t personality, uint8_t affiliation, uint8_t is_paired)
+{
+    // load default droid beacon payload
+    uint8_t msd[8];
+    memcpy(msd, SWGE_DROID_BEACON_PAYLOAD, 8);
+
+    // modify payload appropriately based on established information
+    msd[5] = 0x01 | ((is_paired   << 7) & 0xff);
+    msd[6] = 0x82 | ((affiliation << 3) & 0xff);
+    msd[7] = personality & 0xff;
+
+    // add name 'uBit' to beacon
+    uint8_t cln[4];
+    memcpy(cln, SWGE_BEACON_NAME, 4);
+
+    // start beacon
+    advertiseBeacon(msd,8,cln,4);
+}
+
+void SwgeBeaconService::activateGenericBeacon(ManagedString mfr_id, ManagedString beacon_data)
 {
     // initialize payload
-    uint8_t payload[26];
-    memset(payload, 0, 26);
+    uint8_t msd[26];
+    memset(msd, 0, 26);
 
     // sort out manufacturer's ID
-    uint16_t mfId = (uint16_t)strtol(manufacturerId.toCharArray(), NULL, 0);
+    uint16_t mfId = (uint16_t)strtol(mfr_id.toCharArray(), NULL, 0);
 
     // insert manufacturer id into payload
-    payload[0] = mfId & 0xff;
-    payload[1] = (mfId >> 8) & 0xff;
+    msd[0] = mfId & 0xff;
+    msd[1] = (mfId >> 8) & 0xff;
 
     // start sorting out data
-    uint8_t data_len = beaconData.length();
+    uint8_t data_len = beacon_data.length();
 
     // is data in hexadecimal format? 
-    if ( beaconData.substring(0,2) == "0x") {
+    if ( beacon_data.substring(0,2) == "0x") {
         uint8_t i = 2;
         uint8_t d = 0;
         uint8_t new_data_len = 0;
 
         // handle odd number of characters by assuming missing leading zero
         if ( data_len % 2 != 0 ){
-            payload[new_data_len+2] = char2int(beaconData.charAt(i)) & 0x0f;
+            msd[new_data_len+2] = char2int(beacon_data.charAt(i)) & 0x0f;
             new_data_len++;
             i++;
         }
 
         // loop through data, converting hex to byte
         for (;i<data_len;i+=2) {
-            d  = (char2int(beaconData.charAt(i  )) << 4 & 0xf0);
-            d += (char2int(beaconData.charAt(i+1))      & 0x0f);
-            payload[new_data_len+2] = d;
+            d  = (char2int(beacon_data.charAt(i  )) << 4 & 0xf0);
+            d += (char2int(beacon_data.charAt(i+1))      & 0x0f);
+            msd[new_data_len+2] = d;
             new_data_len++;
         }
 
@@ -107,7 +126,7 @@ void SwgeBeaconService::activateGenericBeacon(ManagedString manufacturerId, Mana
         }
 
         // load data into payload
-        memcpy(&payload[2], beaconData.toCharArray(), data_len);
+        memcpy(&msd[2], beacon_data.toCharArray(), data_len);
     }
 
     // add 'uBit' name to beacon
@@ -115,7 +134,7 @@ void SwgeBeaconService::activateGenericBeacon(ManagedString manufacturerId, Mana
     memcpy(cln, SWGE_BEACON_NAME, 4);
 
     // advertise the beacon
-    advertiseBeacon(payload,data_len+2,cln,4);
+    advertiseBeacon(msd,data_len+2,cln,4);
 }
 
 uint8_t SwgeBeaconService::char2int(char c) {
