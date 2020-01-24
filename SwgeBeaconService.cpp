@@ -63,24 +63,28 @@ void SwgeBeaconService::activateSwgeLocationBeacon(uint8_t zone)
 
 void SwgeBeaconService::activateGenericBeacon(uint16_t manufacturerId, ManagedString beaconData)
 {
+    // initialize payload
     uint8_t payload[26];
     memset(payload, 0, 26);
 
+    // beacon data cannot be more than 24 bytes
     uint8_t data_len = beaconData.length();
     if (data_len > 24) {
         data_len = 24;
     }
 
+    // insert manufacturer id into payload
     payload[0] = manufacturerId & 0xff;
     payload[1] = (manufacturerId >> 8) & 0xff;
-    
-    if (beaconData.length() > 5) {
-        memcpy(&payload[2], beaconData.toCharArray(), data_len);
-    }
 
+    // insert beaconData into payload
+    memcpy(&payload[2], beaconData.toCharArray(), data_len);
+
+    // add 'uBit' name to beacon
     uint8_t cln[4];
     memcpy(cln, SWGE_BEACON_NAME, 4);
 
+    // advertise the beacon
     advertiseBeacon(payload,data_len+2,cln,4);
 }
 
