@@ -8,7 +8,9 @@ This PXT package allows the [micro:bit](https://en.wikipedia.org/wiki/Micro_Bit)
 
 In [MakeCode](https://makecode.microbit.org/), open an existing project or create a new project. Click on the gear icon at the top-right and select *extensions* from the drop-down menu. In the search box enter `github:ruthsarian/pxt-swge-beacon`, press enter, and select `swge-beacon` when it comes up. Your project will now include SWGE beacon blocks under the `Bluetooth` section with some more advanced versions of those blocks under the `more` subsection.
 
-Example: https://makecode.microbit.org/_Ly266TKHt71f
+Examples
+* https://makecode.microbit.org/_Ly266TKHt71f
+* https://makecode.microbit.org/_iMM1oxEAtWj7
 
 ## Block Descriptions
 
