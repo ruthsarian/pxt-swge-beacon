@@ -63,6 +63,20 @@ namespace bluetooth {
         return;
     }
     /**
+     * SWGE Advanced Location Beacon
+     * @param zone [1-7] set the location id for the beacon
+     */
+    //% blockId=swge_location_beacon_advanced block="SWGE Advanced Location Beacon| for zone: %zone| with reaction interval %react_interval| and minimum RSSI (dBm) of %rssi"
+    //% parts="bluetooth" advanced=true
+    //% shim=bluetooth::activateSwgeLocationBeaconAdvanced
+    //% zone.min=1 zone.max=7 zone.defl=1
+    //% react_interval.min=0 react_interval.max=255 react_interval.defl=2
+    //% rssi.min=-128 rssi.max=0 rssi.defl=-90
+    //% inlineInputMode=external
+    export function activateSwgeLocationBeaconAdvanced(zone: number, react_interval: number, rssi: number): void {
+        return;
+    }
+    /**
      * SWGE Droid Beacon
      * @param personality [0-7] set the personality of the droid
      */

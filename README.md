@@ -16,18 +16,22 @@ Examples
 
 ### SWGE Location Beacon `zone`
 * `zone`: Select from a drop-down list the location the beacon should represent.
-* **note**: there is a version of this block that accepts an arbitrary 
-value for `zone` under "bluetooth : more"
+* **note**: there is a version of this block that accepts a numeric value for `zone` under "bluetooth : more"
 
 ### SWGE Droid Beacon `personality`
 * `personality`: Select from a drop-down list the personality the beacon should represent.
-* **note**: there is a version of this block that accepts an arbitrary 
-value for `personality` under "bluetooth : more"
+* **note**: there is a version of this block that accepts a numeric value for `personality` under "bluetooth : more"
 
 ### SWGE Generic Beacon  `manufacturerId, beaconData`
 * `manufacturerId`: a value that identifies the manufacturer for the beacon. set this to `0x0183`
 * `beaconData`: the data for the beacon. will be treated as hexadecimal if it begins with `0x` otherwise is treated as an array of bytes.
 * **note**: this block may be found under "bluetooth : more"
+
+### SWGE Advanced Location Beacon `zone, react_interval, rssi`
+* `zone`: Select from a drop-down list the location the beacon should represent.
+* `react_interval`: Controls how long the droid will wait before its next reaction to the same beacon. A minimum value is about 1 minute.
+* `rssi`: The minimum signal strength the droid must receive the beacon before it reacts. Value is in dBm and the default value is -90 which offers maximum distance. A value of around -26 will be a minimum distance of a few inches.
+* **note**: this block can be found under the bluetooth "more" subsection.
 
 ## Supported targets
 * for PXT/microbit

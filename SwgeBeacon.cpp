@@ -17,18 +17,24 @@ SwgeBeaconService *getBeaconService()
 }
 
 //%
-void activateSwgeLocationBeacon(uint8_t zone)
+void activateSwgeLocationBeaconAdvanced(uint8_t zone, uint8_t react_interval, int8_t rssi)
 {
-    // most common values found throughout the park
-    uint8_t react_interval = 0x02;
-    uint8_t rssi = 0xA6;
-
     // only zones used in the park, and which the droid will react to, are values 1 - 7.
     if (zone < 0 || zone > 7) {
         zone = 1;
     }
 
-    getBeaconService()->activateSwgeLocationBeacon(zone, react_interval, rssi);
+    getBeaconService()->activateSwgeLocationBeacon(zone, react_interval, (uint8_t)(rssi & 0xFF));
+}
+
+//%
+void activateSwgeLocationBeacon(uint8_t zone)
+{
+    // most common values found throughout the park
+    uint8_t react_interval = 0x02;
+    char rssi = 0x5A; // uint8_t rssi = 0xA6;
+
+    activateSwgeLocationBeaconAdvanced(zone, react_interval, rssi);
 }
 
 //%
