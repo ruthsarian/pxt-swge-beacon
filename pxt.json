@@ -1,7 +1,7 @@
 {
     "name": "pxt-swge-beacon",
-    "version": "0.0.1",
-    "description": "Advertise SWGE Location Beacon",
+    "version": "1.0.0",
+    "description": "Advertise SWGE Beacons with the micro:bit.",
     "dependencies": {
         "core": "*",
         "bluetooth": "*"
