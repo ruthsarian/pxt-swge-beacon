@@ -51,7 +51,7 @@ Example value: `0x0A040102A601`
 |01 | Beacon Type | 0x0A | Location Beacon|
 |02 | Beacon Data Length | 0x04 | Value does not include the first two bytes; just the data that comes after|
 |03 | Zone | 0x01 | Valid values are 1 - 7|
-|04 | Reaction Interval | 0x02 | Multiply this value by 5 to get the number of seconds between droid reactions. Any value below 12 (60 seconds) will be treated as 12 (60 seconds) by the droid.|
+|04 | Reaction Interval | 0x02 | Multiply this value by 5 to get the number of seconds between droid reactions. Any value below 12 (60 seconds) will be treated as 12 (60 seconds) by the droid. A value of 0xFF will cause the droid to react once and then never again until power is cycled or the droid encounters enough other beacons (10) to make it forget it had encountered this beacon.|
 |05 | Minimum RSSI in dBm | 0xA6 | A way to determine how close a droid must be to the beacon before it reacts. 0xA6 (-90 dBm) essentially tells the droid to respond at any signal strength. 0xE6 (-26 dBm) would tell the droid not to react until it is within about 1 foot of the droid.|
 |06 | ? unknown ? | 0x01 | Droids will not react to the beacon is this byte is a value other than 0 or 1.|
 
