@@ -34,7 +34,7 @@ Video Tutorial
 
 ### SWGE Generic Beacon  `mfr_id, beacon_data`
 * `mfr_id`: A 2-byte value (0-65535) that identifies the manufacturer for the beacon. For droid beacons this should be set to `0x0183`.
-* `beacon_data`: The raw beacon data.
+* `beacon_data`: The raw beacon data; see tables below for details.
 * **input values**: input values will be treated as hexadecimal if they begin with `0x` otherwise they are treated as an array of bytes.
 * **note**: this block may be found under "bluetooth : more"
 
@@ -46,28 +46,39 @@ This beacon identifies a location. These beacons are placed throughout the park 
 
 Example value: `0x0A040102A601`
 
-|BYTE | Description | Example Value | Notes|
+|BYTE|Description|Example Value|Notes|
 |---|---|---|---|
-|01 | Beacon Type | 0x0A | Location Beacon|
-|02 | Beacon Data Length | 0x04 | Value does not include the first two bytes; just the data that comes after|
-|03 | Zone | 0x01 | Valid values are 1 - 7|
-|04 | Reaction Interval | 0x02 | Multiply this value by 5 to get the number of seconds between droid reactions. Any value below 12 (60 seconds) will be treated as 12 (60 seconds) by the droid. A value of 0xFF will cause the droid to react once and then never again until power is cycled or the droid encounters enough other beacons (10) to make it forget it had encountered this beacon.|
-|05 | Minimum RSSI in dBm | 0xA6 | A way to determine how close a droid must be to the beacon before it reacts. 0xA6 (-90 dBm) essentially tells the droid to respond at any signal strength. 0xE6 (-26 dBm) would tell the droid not to react until it is within about 1 foot of the droid.|
-|06 | ? unknown ? | 0x01 | Droids will not react to the beacon is this byte is a value other than 0 or 1.|
+|01| Beacon Type | 0x0A | Location Beacon |
+|02| Beacon Data Length | 0x04 | Value does not include the first two bytes; just the data that comes after |
+|03| Zone | 0x01 | Valid values are 1 - 7 |
+|04| Reaction Interval | 0x02 | Multiply this value by 5 to get the number of seconds between droid reactions. Any value below 12 (60 seconds) will be treated as 12 (60 seconds) by the droid. A value of 0xFF will cause the droid to react once and then never again until power is cycled or the droid encounters enough other beacons (10) to make it forget it had encountered this beacon. |
+|05| Minimum RSSI in dBm | 0xA6 | A way to determine how close a droid must be to the beacon before it reacts. 0xA6 (-90 dBm) essentially tells the droid to respond at any signal strength. 0xE6 (-26 dBm) would tell the droid not to react until it is within about 1 foot of the droid. |
+|06| ? unknown ? | 0x01 | Droids will not react to the beacon is this byte is a value other than 0 or 1. |
 
 ### Droid Beacon
 This beacon identifies a location. These beacons are placed throughout the park and droids will react to them as they are encountered.
 
 Example value: `0x030444818201`
 
-|BYTE | Description | Example Value | Notes|
+|BYTE|Description|Example Value|Notes|
 |---|---|---|---|
-|01 | Beacon Type | 0x03 | Droid Beacon|
-|02 | Beacon Data Length | 0x04 | Value does not include the first two bytes; just the data that comes after|
-|03 | ? unknown ? | 0x44 | |
-|04 | Paired with Remote | 0x81 | 0x01 + (0x80 if the droid is paired with a remote).|
-|05 | Affiliation | 0x82 | 0x80 + (Affiliation ID * 2)|
-|06 | Personality | 0x01 | Personality Chip ID; 0x01 for unchipped R-unit, 0x02 for unchipped BB-unit.|
+|01| Beacon Type | 0x03 | Droid Beacon |
+|02| Beacon Data Length | 0x04 | Value does not include the first two bytes; just the data that comes after |
+|03| ? unknown ? | 0x44 | |
+|04| Paired with Remote | 0x81 | 0x01 + (0x80 if the droid is paired with a remote). |
+|05| Affiliation | 0x82 | 0x80 + (Affiliation ID * 2) |
+|06| Personality | 0x01 | Personality Chip ID; 0x01 for unchipped R-unit, 0x02 for unchipped BB-unit. |
+
+## Personality Chip and Affiliation IDs
+|Personality Chip|Chip ID|Affiliation|Affiliation ID|
+|Unchipped R-unit|1|Scoundrel|1|
+|Unchipped BB-unit|2|Scoundrel|1|
+|Blue|3|Resistance|5|
+|Gray|4|Scoundrel|1|
+|Red|5|First Order|9|
+|Orange|6|Resistance|5|
+|Purple|7|Scoundrel|1|
+|Black|8|First Order|9|
 
 ## Supported targets
 * for PXT/microbit
