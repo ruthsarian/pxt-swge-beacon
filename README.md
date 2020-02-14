@@ -19,11 +19,12 @@ Video Tutorial
 
 ### SWGE Location Beacon `zone`
 * `zone`: Select from a drop-down list the location the beacon should represent.
-* **note**: there is a version of this block that accepts a numeric value for `zone` under "bluetooth : more"
+* **numeric version**: there is a version of this block that accepts a numeric value for `zone` under "bluetooth : more"
 
 ### SWGE Droid Beacon `personality`
 * `personality`: Select from a drop-down list the personality the beacon should represent.
-* **note**: there is a version of this block that accepts a numeric value for `personality` under "bluetooth : more"
+* **usage note**: Droids will not react to this type of beacon for up to 2 hours after last encountering a location beacon.
+* **numeric version**: there is a version of this block that accepts a numeric value for `personality` under "bluetooth : more"
 
 ### SWGE Generic Beacon  `manufacturerId, beaconData`
 * `manufacturerId`: a value that identifies the manufacturer for the beacon. set this to `0x0183`
