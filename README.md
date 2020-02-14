@@ -28,9 +28,9 @@ Examples
 * **note**: this block may be found under "bluetooth : more"
 
 ### SWGE Advanced Location Beacon `zone, react_interval, rssi`
-* `zone`: Select from a drop-down list the location the beacon should represent.
-* `react_interval`: Controls how long the droid will wait before its next reaction to the same beacon. A minimum value is about 1 minute.
-* `rssi`: The minimum signal strength the droid must receive the beacon before it reacts. Value is in dBm and the default value is -90 which offers maximum distance. A value of around -26 will be a minimum distance of a few inches.
+* `zone`: Set the location zone for the beacon. Valid values are 1 - 7. 
+* `react_interval`: Controls how long the droid will wait before its next reaction to the same beacon. This value is in seconds, then multiplied by 5. For example, a value of 24 would cause the droid to react every 2 minutes (24 x 5 = 120 seconds or 2 minutes). The minimum reaction time interval is 1 minute. This means any value less than 12 will be treated as 12 (12 x 5 = 60 seconds) by the droid.
+* `rssi`: The minimum signal strength the droid must receive the beacon before it reacts. Value is in dBm and the default value is -90 which offers maximum distance (tens of feet). A value of around -26 will be a minimum distance of a few inches.
 * **note**: this block can be found under the bluetooth "more" subsection.
 
 ## Supported targets
