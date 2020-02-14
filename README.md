@@ -38,7 +38,7 @@ Video Tutorial
 * **input values**: input values will be treated as hexadecimal if they begin with `0x` otherwise they are treated as an array of bytes.
 * **note**: this block may be found under "bluetooth : more"
 
-## Droid Beacon Format
+## Beacon Format
 Droid beacons are typically 6 bytes long. Below is a table that describes the purpose of each byte for droid and location beacons.
 
 ### Location Beacon
