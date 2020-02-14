@@ -15,8 +15,8 @@ const uint8_t SWGE_LOCATION_BEACON_PAYLOAD[] = {
 	0x0A,			// type of beacon (location beacon)
 	0x04, 			// length of beacon data
 	0x01,			// location; also corresponds to the audio group the droid will select a sound from
-	0x02,			// ? minimum interval between droid reactions to the beacon
-	0xA6,			// expected RSSI, beacon is ignored if weaker
+	0x02,			// minimum interval between droid reactions to the beacon; this value is multiplied by 5 to determine the interval in seconds. droids have a minimum reaction time of 60 seconds
+	0xA6,			// expected RSSI, beacon is ignored if weaker than value specified
 	0x01,			// ? 0 or 1 otherwise droid will ignore the beacon
 };
 
