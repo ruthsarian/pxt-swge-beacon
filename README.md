@@ -71,6 +71,7 @@ Example value: `0x030444818201`
 
 ## Personality Chip and Affiliation IDs
 |Personality Chip|Chip ID|Affiliation|Affiliation ID|
+|---|---|---|---|
 |Unchipped R-unit|1|Scoundrel|1|
 |Unchipped BB-unit|2|Scoundrel|1|
 |Blue|3|Resistance|5|
