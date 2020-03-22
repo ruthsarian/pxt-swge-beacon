@@ -32,7 +32,7 @@ void activateSwgeLocationBeacon(uint8_t zone)
 {
     // most common values found throughout the park
     uint8_t react_interval = 0x02;
-    char rssi = 0x5A; // uint8_t rssi = 0xA6;
+    char rssi = 0xA6;
 
     activateSwgeLocationBeaconAdvanced(zone, react_interval, rssi);
 }
