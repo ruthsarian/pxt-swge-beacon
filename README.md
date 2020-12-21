@@ -4,11 +4,21 @@
 
 This PXT package allows the [micro:bit](https://en.wikipedia.org/wiki/Micro_Bit) to generate Bluetooth beacons to which droids from the droid depot will respond. 
 
+## !! Version Compatibility Issues !!
+
+As of December 2020, this extension does not work with the default MakeCode environment, which has changed since this extension was first created. In order to use this extension as it currently is you will need to use the Version 1 MakeCode editor at [https://makecode.microbit.org/v1](https://makecode.microbit.org/v1).
+
+This extension will also not work with [V2 micro:bits](https://microbit.org/new-microbit/). Until this extension is updated to use [CODAL](https://github.com/lancaster-university/codal-microbit-v2) this is what we're stuck with.
+
+Reference:
+* [MakeCode Extension compatibility V1 and V2](https://support.microbit.org/support/solutions/articles/19000121371-makecode-extension-compatibility-v1-and-v2)
+* [The micro:bit runtime DAL/CODAL](https://tech.microbit.org/software/runtime/#the-microbit-runtime-device-abstraction-layer-dal---v1)
+
 ## Usage
 
 In [MakeCode](https://makecode.microbit.org/), open an existing project or create a new project. Click on the gear icon at the top-right and select *extensions* from the drop-down menu. In the search box enter `github:ruthsarian/pxt-swge-beacon`, press enter, and select `swge-beacon` when it comes up. Your project will now include SWGE beacon blocks under the `Bluetooth` section with some more advanced versions of those blocks under the `more` subsection.
 
-MakeCode Examples
+MakeCode Examples (will not compile, see compatibility issue note above)
 * https://makecode.microbit.org/_Ly266TKHt71f
 * https://makecode.microbit.org/_iMM1oxEAtWj7
 
