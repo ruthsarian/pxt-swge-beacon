@@ -8,7 +8,7 @@ This PXT package allows the [micro:bit](https://en.wikipedia.org/wiki/Micro_Bit)
 
 As of December 2020, this extension does not work with the default MakeCode environment, which has changed since this extension was first created. In order to use this extension you will need to use the Version 1 MakeCode editor at [https://makecode.microbit.org/v1](https://makecode.microbit.org/v1).
 
-This extension will also not work with [V2 micro:bits](https://microbit.org/new-microbit/). micro:bit V2 uses the [CODAL](https://github.com/lancaster-university/codal-microbit-v2) runtime, which does not include the mbed API this extension utilizes.
+This extension will also not work with [V2 micro:bit](https://microbit.org/new-microbit/). V2 micro:bit uses the [CODAL](https://tech.microbit.org/software/runtime/) runtime, which does not include the [mbed API](https://os.mbed.com/teams/Bluetooth-Low-Energy/) this extension utilizes.
 
 Reference:
 * [MakeCode Extension compatibility V1 and V2](https://support.microbit.org/support/solutions/articles/19000121371-makecode-extension-compatibility-v1-and-v2)
