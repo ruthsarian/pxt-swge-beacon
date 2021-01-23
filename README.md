@@ -6,9 +6,9 @@ This PXT package allows the [micro:bit](https://en.wikipedia.org/wiki/Micro_Bit)
 
 ## !! Version Compatibility Issues !!
 
-As of December 2020, this extension does not work with the default MakeCode environment, which has changed since this extension was first created. In order to use this extension as it currently is you will need to use the Version 1 MakeCode editor at [https://makecode.microbit.org/v1](https://makecode.microbit.org/v1).
+As of December 2020, this extension does not work with the default MakeCode environment, which has changed since this extension was first created. In order to use this extension you will need to use the Version 1 MakeCode editor at [https://makecode.microbit.org/v1](https://makecode.microbit.org/v1).
 
-This extension will also not work with [V2 micro:bits](https://microbit.org/new-microbit/). Until this extension is updated to use [CODAL](https://github.com/lancaster-university/codal-microbit-v2) this is what we're stuck with.
+This extension will also not work with [V2 micro:bits](https://microbit.org/new-microbit/). micro:bit V2 uses the [CODAL](https://github.com/lancaster-university/codal-microbit-v2) runtime, which does not include the mbed API this extension utilizes.
 
 Reference:
 * [MakeCode Extension compatibility V1 and V2](https://support.microbit.org/support/solutions/articles/19000121371-makecode-extension-compatibility-v1-and-v2)
@@ -16,11 +16,10 @@ Reference:
 
 ## Usage
 
-In [MakeCode](https://makecode.microbit.org/), open an existing project or create a new project. Click on the gear icon at the top-right and select *extensions* from the drop-down menu. In the search box enter `github:ruthsarian/pxt-swge-beacon`, press enter, and select `swge-beacon` when it comes up. Your project will now include SWGE beacon blocks under the `Bluetooth` section with some more advanced versions of those blocks under the `more` subsection.
+In [MakeCode](https://makecode.microbit.org/v1/), open an existing project or create a new project. Click on the gear icon at the top-right and select *extensions* from the drop-down menu. In the search box enter `github:ruthsarian/pxt-swge-beacon`, press enter, and select `swge-beacon` when it comes up. Your project will now include SWGE beacon blocks under the `Bluetooth` section with some more advanced versions of those blocks under the `more` subsection.
 
-MakeCode Examples (will not compile, see compatibility issue note above)
-* https://makecode.microbit.org/_Ly266TKHt71f
-* https://makecode.microbit.org/_iMM1oxEAtWj7
+MakeCode Examples
+* https://makecode.microbit.org/v1/_ggJDJ096VcsL
 
 Video Tutorial
 * https://www.youtube.com/watch?v=UUo-L128cFc
