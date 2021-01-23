@@ -20,6 +20,7 @@ In [MakeCode](https://makecode.microbit.org/v1/), open an existing project or cr
 
 MakeCode Examples
 * https://makecode.microbit.org/v1/_ggJDJ096VcsL
+* https://makecode.microbit.org/v1/_R5HKd6gTkUcc
 
 Video Tutorial
 * https://www.youtube.com/watch?v=UUo-L128cFc
